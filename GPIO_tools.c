@@ -32,27 +32,27 @@ void LEDInit()
 void driveLED(uint16_t *xAxis, uint16_t *yAxis)
 {
 	PORTB = 0x00;                                //initialize PORTB with 0
-	if (((*xAxis) > MIN_POS_VAL) & ((*xAxis) < MAX_POS_VAL))  
-	{
-		PORTB |= 1 << BACK;
-		PORTB &= ~ (1 << FRONT);
+	if (((*xAxis) > MIN_POS_VAL) & ((*xAxis) < MAX_POS_VAL))     //xAxis points to a positive value
+	{															 
+		PORTB |= 1 << BACK;                                      // light up BACK  LED
+		PORTB &= ~ (1 << FRONT);                                 // turn off FRONT LED
 	}
 		else
-		if (((*xAxis) > MIN_NEG_VAL) & ((*xAxis) < MAX_NEG_VAL))
+		if (((*xAxis) > MIN_NEG_VAL) & ((*xAxis) < MAX_NEG_VAL)) //xAxis points to a negative value
 	{
-		PORTB |= 1 << FRONT;
-		PORTB &= ~ (1 << BACK);
+		PORTB |= 1 << FRONT;									 // light up FRONT  LED
+		PORTB &= ~ (1 << BACK);									 // turn off BACK LED
 	}
 	
-	if (((*yAxis) > MIN_POS_VAL) & ((*yAxis) < MAX_POS_VAL))
+	if (((*yAxis) > MIN_POS_VAL) & ((*yAxis) < MAX_POS_VAL))	 //yAxis points to a positive value
 	{
-		PORTB |= 1 << RIGHT;
-		PORTB &= ~ (1 << LEFT);
+		PORTB |= 1 << RIGHT;									 // light up RIGHT  LED
+		PORTB &= ~ (1 << LEFT);									 // turn off LEFT LED
 	}
 		else
-		if (((*yAxis) > MIN_NEG_VAL) & ((*yAxis) < MAX_NEG_VAL))
+		if (((*yAxis) > MIN_NEG_VAL) & ((*yAxis) < MAX_NEG_VAL)) //yAxis points to a negative value
 	{
-		PORTB |= 1 << LEFT;
-		PORTB &= ~ (1 << RIGHT);
+		PORTB |= 1 << LEFT;										 // light up LEFT  LED
+		PORTB &= ~ (1 << RIGHT);								 // turn off RIGHT LED
 	}
 }

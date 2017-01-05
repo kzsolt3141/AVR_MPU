@@ -27,7 +27,8 @@
 #define FRONT 2 // pin 2 of the PORTB
 #define BACK 0	// pin 0 of the PORTB
 
-// define maximum and minimum values for comparison
+// define signed maximum and minimum values 
+// for comparison at 16bit (MSB is the sign, negative numbers in C2)
 // note: use an offset in each direction to get a
 // smooth response
 #define MIN_POS_VAL (0x0000 + 0x800)
