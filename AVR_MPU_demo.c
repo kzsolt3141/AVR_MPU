@@ -36,6 +36,7 @@ int main(void)
 	LEDInit();
 //wait after the initialization is done
 // it takes time to devices to get working...
+USART_string_send("\n\r Init Done! \n\r");
 	_delay_ms(500);
 
 //calibrating the accelerometer by definig x and y offset

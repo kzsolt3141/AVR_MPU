@@ -20,11 +20,20 @@
 //------------------------------------------------
 //               DEFINES
 //------------------------------------------------
-#define LEFT 1
-#define RIGHT 3
-#define FRONT 2
-#define BACK 0
+// define the losition of the LEDS on the board,
+// and with which pin are they connected
+#define LEFT 1  // pin 1 of the PORTB
+#define RIGHT 3 // pin 3 of the PORTB
+#define FRONT 2 // pin 2 of the PORTB
+#define BACK 0	// pin 0 of the PORTB
 
+// define maximum and minimum values for comparison
+// note: use an offset in each direction to get a
+// smooth response
+#define MIN_POS_VAL (0x0000 + 0x800)
+#define MAX_POS_VAL (0x7FFF - 0x800)
+#define MAX_NEG_VAL (0xFFFF - 0x800)
+#define MIN_NEG_VAL (0x8000 + 0x800)
 //------------------------------------------------
 //               FUNCTIONS
 //------------------------------------------------

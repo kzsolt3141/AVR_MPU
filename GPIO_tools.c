@@ -32,25 +32,25 @@ void LEDInit()
 void driveLED(uint16_t *xAxis, uint16_t *yAxis)
 {
 	PORTB = 0x00;                                //initialize PORTB with 0
-	if (((*xAxis) > 2000) & ((*xAxis) < 30000))  
+	if (((*xAxis) > MIN_POS_VAL) & ((*xAxis) < MAX_POS_VAL))  
 	{
 		PORTB |= 1 << BACK;
 		PORTB &= ~ (1 << FRONT);
 	}
 		else
-		if (((*xAxis) > 30000) & ((*xAxis) < 63535))
+		if (((*xAxis) > MIN_NEG_VAL) & ((*xAxis) < MAX_NEG_VAL))
 	{
 		PORTB |= 1 << FRONT;
 		PORTB &= ~ (1 << BACK);
 	}
 	
-	if (((*yAxis) > 2000) & ((*yAxis) < 30000))
+	if (((*yAxis) > MIN_POS_VAL) & ((*yAxis) < MAX_POS_VAL))
 	{
 		PORTB |= 1 << RIGHT;
 		PORTB &= ~ (1 << LEFT);
 	}
 		else
-		if (((*yAxis) > 30000) & ((*yAxis) < 63535))
+		if (((*yAxis) > MIN_NEG_VAL) & ((*yAxis) < MAX_NEG_VAL))
 	{
 		PORTB |= 1 << LEFT;
 		PORTB &= ~ (1 << RIGHT);
