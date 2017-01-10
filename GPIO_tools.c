@@ -24,6 +24,28 @@ void LEDInit()
 }
 
 //------------------------------------------------
+//               void LEDTest()
+//------------------------------------------------
+// function will light up LEDs on board one by one
+void LEDTest()
+{
+	PORTB = 1 << RIGHT; // light up right LED
+	_delay_ms(300);     // wait 300 ms
+	PORTB = 1 << FRONT; // light up front LED
+	_delay_ms(300);		// wait 300 ms
+	PORTB = 1 << LEFT;  // light up left LED
+	_delay_ms(300);		// wait 300 ms
+	PORTB = 1 << BACK;	// light up back LED
+	_delay_ms(300);		// wait 300 ms
+	PORTB = 0xFF;		// light up all LEDs
+	_delay_ms(100);		// wait 100 ms
+	PORTB = ~PORTB;		// turn off all LEDs
+	_delay_ms(100);		// wait 100 ms
+	PORTB = ~PORTB;		// light up all LEDs
+	_delay_ms(100);		// wait 100 ms
+	PORTB = 0x00;		// turn off all LEDs
+}					
+//------------------------------------------------
 //               void driveLED(uint16_t *xAxis, uint16_t *yAxis)
 //------------------------------------------------
 // get the pointer which points to  X and Y values 

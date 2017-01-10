@@ -39,6 +39,7 @@
 //               FUNCTIONS
 //------------------------------------------------
 void LEDInit();
+void LEDTest();
 void driveLED(uint16_t *xAxis, uint16_t *yAxis);
 
 

@@ -34,6 +34,7 @@ int main(void)
 	TWIInit();
 	MPU6050Init();
 	LEDInit();
+	LEDTest();
 //wait after the initialization is done
 // it takes time to devices to get working...
 USART_string_send("\n\r Init Done! \n\r");
