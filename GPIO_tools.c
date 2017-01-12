@@ -53,6 +53,17 @@ void LEDTest()
 // depending on the values
 void driveLED(uint16_t *xAxis, uint16_t *yAxis)
 {
+//------------------------------------------------
+//               TEMA 2
+// dupa rezolvarea TEMA 1 pe USART apar valori pentru X si Y
+// functia driveLED prelucreaza aceste valori pentru axa X
+// modificati functia sa prelucreze si pentru axa Y
+// functia driveLED se afla in fisierul GPIO_tools.c
+//      - TEMA 2.1 modificati codul sa functioneze si pentru yAxis
+//      - TEMA 2.2 explicati de ce sunt folosite
+//                 MIN_POS_VAL, MAX_POS_VAL, MIN_NEG_VAL, MAX_NEG_VAL
+//      - TEMA 2.3 de ce sunt folosite pointeri ca parametru ????
+//------------------------------------------------	
 	PORTB = 0x00;                                //initialize PORTB with 0
 	if (((*xAxis) > MIN_POS_VAL) & ((*xAxis) < MAX_POS_VAL))     //xAxis points to a positive value
 	{															 
@@ -64,17 +75,5 @@ void driveLED(uint16_t *xAxis, uint16_t *yAxis)
 	{
 		PORTB |= 1 << FRONT;									 // light up FRONT  LED
 		PORTB &= ~ (1 << BACK);									 // turn off BACK LED
-	}
-	
-	if (((*yAxis) > MIN_POS_VAL) & ((*yAxis) < MAX_POS_VAL))	 //yAxis points to a positive value
-	{
-		PORTB |= 1 << RIGHT;									 // light up RIGHT  LED
-		PORTB &= ~ (1 << LEFT);									 // turn off LEFT LED
-	}
-		else
-		if (((*yAxis) > MIN_NEG_VAL) & ((*yAxis) < MAX_NEG_VAL)) //yAxis points to a negative value
-	{
-		PORTB |= 1 << LEFT;										 // light up LEFT  LED
-		PORTB &= ~ (1 << RIGHT);								 // turn off RIGHT LED
 	}
 }

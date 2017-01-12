@@ -3,6 +3,9 @@
  *
  * Created: 12/24/2016 1:15:11 AM
  *  Author: Zsolt
+ *-------------------------------
+ * Do NOT modify this code!
+ *-------------------------------
  */ 
 
 
@@ -115,5 +118,6 @@
 uint8_t MPU6050ReadReg (uint8_t);         // read one register from MPU
 void MPU6050WriteReg (uint8_t, uint8_t);  // write one register
 void MPU6050Init();                       // write MPU configuration registers
+void MPU6050Calibrate(uint16_t*, uint16_t*);
 
 #endif /* MPU6050_H_ */

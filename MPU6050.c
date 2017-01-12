@@ -109,6 +109,15 @@ uint8_t MPU6050ReadReg (uint8_t addr)
 // see MPU6050 register map document for more information..
 void MPU6050Init()
 {
+//------------------------------------------------
+//               TEMA 1
+// momentan dispozitivul masoara numai pa axa X
+// in fisierul MPU6050 modificati valorile de initializare
+// astfel incat dispozitivul sa masoara si pe axa Y
+// trebuie sa modificati valoarea numai la un singur registru
+//      - TEMA 1.1 care este regitrul pe care trebuie modificat
+//      - TEMA 1.2 care este noua valoare?
+//------------------------------------------------
 	MPU6050WriteReg(MPU6050_PWR_MGMT_1, 0x80);  // reset device
 	MPU6050WriteReg(MPU6050_SMPLRT_DIV, 0x08);  // set sample rate to 1kHz by dividing sample rate with 8
 	MPU6050WriteReg(MPU6050_CONFIG, 0x06);      // set the highest low pass filter DLPCGF 6
@@ -116,5 +125,26 @@ void MPU6050Init()
 	MPU6050WriteReg(MPU6050_ACCEL_CONFIG, 0x08);// set accelero range to 4g
 	MPU6050WriteReg(MPU6050_PWR_MGMT_1, 0x00);  // disable reset condition
 	MPU6050WriteReg(MPU6050_PWR_MGMT_1, 0x08);  // disable temperature
-	MPU6050WriteReg(MPU6050_PWR_MGMT_2, 0x00);  // enable all the axis on gyro and accelerometer
+	MPU6050WriteReg(MPU6050_PWR_MGMT_2, 0x10);  // enable all the axis on gyro and accelerometer
+}
+
+//------------------------------------------------
+//               void MPU6050Calibrate(uint8_t*, uint8_t*)
+//------------------------------------------------
+//calibrating the accelerometer by definig x and y offset
+void MPU6050Calibrate(uint16_t* XOffset, uint16_t* YOffset)
+{
+	uint8_t TWIReadout;
+	TWIReadout = MPU6050ReadReg(MPU6050_ACCEL_XOUT_H); // read out accelerometer X axis upper byte
+	*XOffset = TWIReadout << 8;                      // insert into final variable (higher 8bits)
+	TWIReadout = MPU6050ReadReg(MPU6050_ACCEL_XOUT_L); // read out accelerometer X axis lower byte
+	*XOffset |= TWIReadout;						   // insert into final variable (lower 8 bits)
+	*XOffset = -(*XOffset);                             // offset is the negative read out value
+	
+	TWIReadout = MPU6050ReadReg(MPU6050_ACCEL_YOUT_H); // read out accelerometer Y axis upper byte
+	*YOffset = TWIReadout << 8;					   // insert into final variable (higher 8bits)
+	TWIReadout = MPU6050ReadReg(MPU6050_ACCEL_YOUT_L); // read out accelerometer Y axis lower byte
+	*YOffset |= TWIReadout;						   // insert into final variable (lower 8 bits)
+	*YOffset = -(*YOffset);							   // offset is the negative read out value
+	
 }
